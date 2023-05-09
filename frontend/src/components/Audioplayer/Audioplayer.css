@@ -1,0 +1,94 @@
+.button{
+    color: tomato;
+    margin: 0 20px;
+}
+
+.unselectedButto{
+    color: white;
+    margin: 0 5px;
+}
+
+.disable{
+    color: gray;
+    margin: 0 20px;
+}
+
+.playerBody{
+    background-color: black;
+    color: aliceblue;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    left: 2rem; /* Add spacing on the left */
+    right: 2rem; /* Add spacing on the right */
+    width: calc(100% - 4rem); /* Adjust width calculation for spacing */
+    z-index: 9999;
+    padding: 0 1rem 0 0;
+}
+
+.wrapper{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+.col{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content:center;
+}
+
+.colleft{
+    display: flex;
+    align-items:end;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.row{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    padding: 1rem 0;
+}
+
+
+/*Chrome*/
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    input[type='range'] {
+      overflow: hidden;
+      width: 20rem;
+      background-color:tomato;
+    }
+    
+    input[type='range']::-webkit-slider-runnable-track {
+      height: 10px;
+      color: tomato;
+      margin-top: -1px;
+    }
+    
+    input[type='range']::-webkit-slider-thumb {
+      width: 5px;
+      height: 5px;
+      cursor: default;
+      background: white;
+    }
+
+}
+/** FF*/
+input[type="range"]::-moz-range-progress {
+  background-color: white; 
+}
+input[type="range"]::-moz-range-track {  
+  background-color:  tomato;
+}
+/* IE*/
+input[type="range"]::-ms-fill-lower {
+  background-color: white; 
+}
+input[type="range"]::-ms-fill-upper {  
+  background-color:  tomato;
+}

@@ -23,7 +23,6 @@
     right: 2rem; /* Add spacing on the right */
     width: calc(100% - 4rem); /* Adjust width calculation for spacing */
     z-index: 9999;
-    padding: 0 1rem 0 0;
 }
 
 .wrapper{

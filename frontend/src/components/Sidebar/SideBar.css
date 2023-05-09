@@ -20,7 +20,9 @@
     color: white;
     height: 80vh;
     overflow-y:visible;
-    
+    left: 0;
+    width: 100%;
+    z-index: 9999;
   }
   
   .top_section {

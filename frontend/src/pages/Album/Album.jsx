@@ -3,6 +3,8 @@ import {useEffect, useState} from 'react'
 import { useParams } from 'react-router-dom'
 import { useAudioContext } from '../../hooks/useAudioContext';
 import './Album.css'
+import { BiHeart } from 'react-icons/bi';
+import { useAuthContext } from '../../hooks/useAuthContext';
 
 function Album() {
     const [tracks, setTracks] = useState([])
@@ -11,27 +13,21 @@ function Album() {
     
     const {albumId} = useParams()
     
+    const {user} = useAuthContext()
+
     // Get the song's info of the album
     const fetchSong = (albumId) => {
-      axios.get(`http://127.0.0.1:4000/api/tracks/album/${albumId}`)
+      axios.get(`http://127.0.0.1:4000/api/tracks/album/${albumId}`,{
+        headers: {
+          'Authorization': `Bearer ${user.token}`
+        }
+      })
         .then((res) => {
+          console.log("-------------------------")
           console.log(res.data)
+          console.log("-------------------------")
           setTracks(res.data)
-        }).catch(function (error) {
-            if (error.response) {
-              console.log(error.response.data);
-              console.log(error.response.status);
-              console.log(error.response.headers);
-            }}
-            )
-    }
-
-    // Get the album's info of the album
-    const fetchAlbum = (albumId) => {
-      axios.get(`http://127.0.0.1:4000/api/albums/${albumId}`)
-        .then((res) => {
-          console.log(res.data)
-          setAlbum(res.data)
+          setAlbum(res.data[0].album_id)
         }).catch(function (error) {
             if (error.response) {
               console.log(error.response.data);
@@ -43,30 +39,35 @@ function Album() {
 
     useEffect(() => {
         console.log(albumId)
+        if(user){
         fetchSong(albumId)
-        fetchAlbum(albumId)
-      },[])
+      }
+      },[user])
 
 
   return (
     <div>
-    <div>
-        {tracks ?
-          <div>
-            <h1>Name of the Album: {album.name}</h1>
-            <h3>`duration of the album: {album.duration}s`</h3>
-            {tracks.map((track,index) => {
-              return (
-                <div onClick={() => dispatch({type: 'SET_AUDIO', payload: track.songUrl})}>
-                      <img src={track.imgUrl} style={{ width: '10rem', height: '10rem' }}/>
-                      <p style={{fontSize: '1rem'}}>{track.name}</p>
-                      duration of the track {track.name}: {track.duration}s
-                </div>
-              )
-            })}
-        </div>
-            : null}
-        </div>
+  <div>
+    {tracks ? (
+      <div>
+        <h1>{album.name}</h1>
+        <p> {(album.duration/60).toFixed(0)}mins  {(((album.duration/60).toFixed(0)-(album.duration/60))*60).toFixed(0)}sec</p>
+        {tracks.map((track,index) => (
+          <div className="track" onClick={() => dispatch({type: 'SET_AUDIO', payload: {song: track.songUrl, name: track.name, album: track.album_id.name, album_id: track.album_id._id, albumImg: track.album_id.albumImg}})}>
+            <img src={album.albumImg} />
+            <div>
+              <p>{track.name}</p>
+              <div className="track-duration">
+                <div>{(track.duration/60).toFixed(0)}mins  {(((track.duration/60).toFixed(0)-(track.duration/60))*60).toFixed(0)}s</div>
+                <BiHeart size={20} style={{padding: "10px 0"}}/>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    ) : null}
+  </div>
+
   </div>
   )
 }

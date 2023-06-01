@@ -20,7 +20,11 @@ export const audioReducer = (state, action) => {
 export const AudioContextProvider = ({ children }) => {
 
     const [state, dispatch] = useReducer(audioReducer, {
-        song: null
+        song: null,
+        name: null,
+        album: null,
+        album_id: null,
+        albumImg: null,
     })
 
     return(

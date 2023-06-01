@@ -7,7 +7,12 @@ const {
   updateArtist
 } = require('../controllers/artistController')
 
+const requireAuth = require('../middleware/requireAuth')
+
 const router = express.Router()
+
+// require auth for all artist routes
+router.use(requireAuth)
 
 // GET all Artists
 router.get('/', getArtists)

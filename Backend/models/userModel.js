@@ -13,7 +13,11 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: true
-  }
+  },
+  playlists: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Playlist'
+  }]
 })
 
 // static signup method

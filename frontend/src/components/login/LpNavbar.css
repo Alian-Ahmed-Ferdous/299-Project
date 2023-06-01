@@ -1,0 +1,31 @@
+.navbar {
+    background-color: rgb(68, 68, 68);
+    width: 80%;
+    margin: auto;
+    
+  }
+  
+  .contain {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 10vh;
+  }
+  
+  .brand {
+    color: white;
+    font-weight: bold;
+    font-size: x-large;
+    padding-left: 2rem;
+  }
+  
+  .text {
+    color: white;
+    padding-right: 2rem;
+  }
+  
+  .text a {
+    color: white;
+    text-decoration: none;
+  }
+  

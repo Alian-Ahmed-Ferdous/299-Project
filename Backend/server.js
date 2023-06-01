@@ -5,7 +5,9 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const artistRoutes = require('./routes/artist')
 const albumRoutes = require('./routes/album')
-const trackRoutes = require('./routes/track') 
+const trackRoutes = require('./routes/track')
+const playlistRountes = require('./routes/playlist') 
+const userRountes = require('./routes/user')
 
 // express app
 const app = express()
@@ -28,6 +30,8 @@ app.use((req, res, next) => {
 app.use('/api/artists', artistRoutes)
 app.use('/api/albums', albumRoutes)
 app.use('/api/tracks', trackRoutes)
+app.use('/api/playlist', playlistRountes)
+app.use('/api/user', userRountes)
 
 // connect to db
 mongoose.connect(process.env.MONGO_URI)

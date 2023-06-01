@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 
 // get all Albums
 const getAlbums = async (req, res) => {
-  const album = await Album.find({}).sort({createdAt: -1})
+  const album = await Album.find({}).populate('artist_id', 'name artistImg').sort({createdAt: -1})
 
   res.status(200).json(album)
 }
@@ -27,11 +27,11 @@ const getAlbum = async (req, res) => {
 
 // create a new Album
 const createAlbum = async (req, res) => {
-  const {name, albumImg, duration, artist} = req.body
+  const {name, albumImg, duration, artist_id} = req.body
 
   // add to the database
   try {
-    const album = await Album.create({ name, albumImg, duration, artist })
+    const album = await Album.create({ name, albumImg, duration, artist_id })
     res.status(200).json(album)
   } catch (error) {
     res.status(400).json({ error: error.message })

@@ -1,0 +1,19 @@
+.homeContainer{
+  height: 100vh;
+}
+
+.tracksContainer {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .track{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 2rem;
+  }
+  
+  .track-image {
+    width: 8rem;
+    height: 8rem;
+  }

@@ -13,13 +13,13 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    icon: <FaHome />,
+    icon: <FaHome size={20}/>,
   },
-  {
-    path: "/users",
-    name: "Profile",
-    icon: <FaUser />,
-  },
+  // {
+  //   path: "/users",
+  //   name: "Profile",
+  //   icon: <FaUser />,
+  // },
   // {
   //   path: "/messages",
   //   name: "Messages",
@@ -33,52 +33,52 @@ const routes = [
   {
     path: "/file-manager",
     name: "Library",
-    icon: <AiTwotoneFileExclamation />,
+    icon: <AiTwotoneFileExclamation size={20} />,
     subRoutes: [
       {
         path: "/settings/profile",
         name: "Playlists ",
-        icon: <AiFillHeart />,
+        icon: <AiFillHeart size={20}/>,
       },
       {
         path: "/settings/profile",
         name: "Liked Songs ",
-        icon: <AiFillHeart />,
+        icon: <AiFillHeart size={20}/>,
       },
       {
         path: "/settings/2fa",
         name: "Liked Albums",
-        icon: <AiFillHeart />,
+        icon: <AiFillHeart size={20}/>,
       },
       {
         path: "/settings/billing",
         name: "Trending Songs",
-        icon: <AiFillHeart />,
+        icon: <AiFillHeart size={20}/>,
       },
     ],
   },
   {
     path: "/order",
     name: "Premium",
-    icon: <FaMoneyBill />,
+    icon: <FaMoneyBill size={20}/>,
      subRoutes: 
       {
         path: "/settings/profile",
         name: "Service one ",
-        icon: <FaMoneyBill />,
+        icon: <FaMoneyBill size={20}/>,
       },
       
   },
   {
     path: "/settings",
     name: "Settings",
-    icon: <BiCog />,
+    icon: <BiCog size={20}/>,
     exact: true,
     subRoutes: [
       {
-        path: "/settings/profile",
-        name: "Logout ",
-        icon: <FaUser />,
+        path: "/",
+        name: "Sign Out",
+        icon: <FaUser size={20}/>,
       },
       // {
       //   path: "/settings/2fa",
@@ -161,18 +161,18 @@ const SideBar = ({ children }) => {
                   exit="hidden"
                   className="logo"
                 >
-                  KOBIGAAN
+                  Menu
                 </motion.h1>
               )}
             </AnimatePresence>
 
             <div className="bars">
-              <FaBars size={30} onClick={toggle} />
+              <FaBars size={25} onClick={toggle} />
             </div>
           </div>
           <div className="search">
             <div className="search_icon">
-              <BiSearch onClick={toggle}/>
+              <BiSearch size={20} onClick={toggle}/>
             </div>
             <AnimatePresence>
               {isOpen && (

@@ -7,7 +7,12 @@ const {
   updateAlbum
 } = require('../controllers/albumController')
 
+const requireAuth = require('../middleware/requireAuth')
+
 const router = express.Router()
+
+// require auth for all albums routes
+router.use(requireAuth)
 
 // GET all Albums
 router.get('/', getAlbums)

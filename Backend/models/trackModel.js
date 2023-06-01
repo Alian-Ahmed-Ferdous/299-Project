@@ -3,27 +3,31 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const trackSchema = new Schema({
-  name: {
-    type: String,
-    required: true
+  name: String,
+  album_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Album'
   },
-  albumId: {
-    type: mongoose.Types.ObjectId,
-    ref: 'Album',
-    required: true
+  artist_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Artist'
+  },
+  trendingCount: {
+    type: Number,
+    default: 0
   },
   duration: {
     type: Number,
     required: true
   },
-  imgUrl: {
-    type: String,
-    require: true
-  },
   songUrl: {
     type: String,
     required: true
-  }
+  },
+  likes: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }]
 }, { timestamps: true })
 
 module.exports = mongoose.model('Track', trackSchema)

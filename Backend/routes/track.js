@@ -5,7 +5,10 @@ const {
   getTrack, 
   createTrack, 
   deleteTrack, 
-  updateTrack
+  updateTrack,
+  updatePopularity,
+  updateLike,
+  getRecomTracks
 } = require('../controllers/trackController')
 
 const router = express.Router()
@@ -22,10 +25,16 @@ router.get('/album/:id', getTrackOfAlbum)
 // POST a new Track
 router.post('/', createTrack)
 
+router.patch("/trend/:id", updatePopularity)
+
+router.patch("/liked/:id", updateLike)
+
 // DELETE a Track
 router.delete('/:id', deleteTrack)
 
 // UPDATE a Track
 router.patch('/:id', updateTrack)
+
+router.get('/recommand/:id', getRecomTracks)
 
 module.exports = router

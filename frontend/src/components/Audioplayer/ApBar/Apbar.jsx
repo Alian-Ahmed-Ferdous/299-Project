@@ -5,15 +5,17 @@ import AudioVisual from '../AudioVisual'
 
 function Apbar({isOpen, audioPlayer}) {
   return (
-    <div className="navbar-container">
-      <motion.div
-        className="navbar"
-        initial={{ x: "15rem" }}
-        animate={{ x: isOpen ? 0 : "15rem" }}
-        transition={{ duration: 0.3 }}
-      >
-        <AudioVisual />
-      </motion.div>
+    <div className='ApBar'>
+      <div className="apbarcontent">
+        <motion.div
+          className="panel"
+          initial={{ x: "15rem" }}
+          animate={{ x: isOpen ? 0 : "15rem" }}
+          transition={{ duration: 0.3 }}
+        >
+          <AudioVisual />
+        </motion.div>
+      </div>
     </div>
   )
 }

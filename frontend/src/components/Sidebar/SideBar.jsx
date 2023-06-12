@@ -36,67 +36,12 @@ const routes = [
     icon: <AiTwotoneFileExclamation size={20} />,
     subRoutes: [
       {
-        path: "/settings/profile",
+        path: "/Playlists",
         name: "Playlists ",
         icon: <AiFillHeart size={20}/>,
       },
-      {
-        path: "/settings/profile",
-        name: "Liked Songs ",
-        icon: <AiFillHeart size={20}/>,
-      },
-      {
-        path: "/settings/2fa",
-        name: "Liked Albums",
-        icon: <AiFillHeart size={20}/>,
-      },
-      {
-        path: "/settings/billing",
-        name: "Trending Songs",
-        icon: <AiFillHeart size={20}/>,
-      },
     ],
   },
-  {
-    path: "/order",
-    name: "Premium",
-    icon: <FaMoneyBill size={20}/>,
-     subRoutes: 
-      {
-        path: "/settings/profile",
-        name: "Service one ",
-        icon: <FaMoneyBill size={20}/>,
-      },
-      
-  },
-  {
-    path: "/settings",
-    name: "Settings",
-    icon: <BiCog size={20}/>,
-    exact: true,
-    subRoutes: [
-      {
-        path: "/",
-        name: "Sign Out",
-        icon: <FaUser size={20}/>,
-      },
-      // {
-      //   path: "/settings/2fa",
-      //   name: "2FA",
-      //   icon: <FaLock />,
-      // },
-      // {
-      //   path: "/settings/billing",
-      //   name: "Billing",
-      //   icon: <FaMoneyBill />,
-      // },
-    ],
-  },
-  // {
-  //   path: "/saved",
-  //   name: "Saved",
-  //   icon: <AiFillHeart />,
-  // },
 ];
 
 const SideBar = ({ children }) => {

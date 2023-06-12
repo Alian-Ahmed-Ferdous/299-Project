@@ -9,6 +9,7 @@ import './Audioplayer.css'
 import { useAudioContext } from '../../hooks/useAudioContext'
 import { BiSkipNext, BiSkipPrevious } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 function Audioplayer({ isOpen, setIsOpen, audioPlayer }) {
 
@@ -21,7 +22,7 @@ function Audioplayer({ isOpen, setIsOpen, audioPlayer }) {
   // const [OgSongList, setOgSongList] = useState([])
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
-  const [songIndex, setSongIndex] = useState(0)
+  const [songIndex, setSongIndex] = useState(0);
   const [volume, setVolume] = useState(0.25);
 
   // references
@@ -31,8 +32,14 @@ function Audioplayer({ isOpen, setIsOpen, audioPlayer }) {
   const audioElementRef = useRef();
   const changeVolume = () => {
     setVolume(volumeBar.current.value/100);
-    console.log(volume)
-    audioElementRef.current.volume = volume
+    const vol = volumeBar.current.value/100
+    console.log(vol)
+    if(vol < 0.01){
+      audioElementRef.current.volume = vol
+    }
+    else{
+    audioElementRef.current.volume = vol - 0.01
+    }
   }
 
   const toggleOnRepeat = () => {
@@ -154,6 +161,22 @@ function Audioplayer({ isOpen, setIsOpen, audioPlayer }) {
       setSongIndex(setNumber)
     }
   }
+
+useEffect(() => {
+  {song && song[songIndex].trackId &&
+    // Make an API call to increment the trending count
+    axios.patch(`http://127.0.0.1:4000/api/tracks/trend/${song[songIndex].trackId}`)
+    .then((response) => {
+      console.log(response.data); // "Trending incremented"
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
+}, [songIndex]);
+
+  
+
   audioPlayer.current = audioElementRef.current;
   return (
     <div className='playerBody'>
@@ -166,7 +189,7 @@ function Audioplayer({ isOpen, setIsOpen, audioPlayer }) {
               <img src={song? song[songIndex].albumImg: null}/>
               <div className='textbox'>
                 <p>{song? song[songIndex].name: null}</p>
-                <Link to={`album/${song[songIndex].album_Id}`}>
+                <Link to={`album/${song[songIndex].album_id}`}>
                   <p>{song? song[songIndex].album: null}</p>
                 </Link>
               </div>
@@ -175,25 +198,26 @@ function Audioplayer({ isOpen, setIsOpen, audioPlayer }) {
             }
           </div>
           <div className='colcenter'>
-              <div className='row'>
+              <div className='therows'>
                   <div className='button'>{calculateTime(currentTime)}</div>
                   <input type='range' defaultValue="0" ref={progressBar} onChange={changeRange} />
                   <div className='button'>{!isNaN(duration)?((duration && !isNaN(duration)) && calculateTime(duration)):"00:00"}</div>
               </div>
-              <div className='row'>
+              <div className='therows'>
                   {
                     isOnRepeat?<BsRepeat1 className={"button"} onClick={toggleOnRepeat}/>:<BsRepeat className={"button"} onClick={toggleOnRepeat}/>
                   }
+                  
                   <BiSkipPrevious size={30} className={song?song.length>1?'button':'disable':'disable'} onClick={handleNextSong}/>
                   <FaBackward className={song?'button':'disable'} onClick={backTen}/>
                   <div onClick={togglePlayPause}>{isPlaying? <AiFillPauseCircle size={40} className={song?'button':'disable'}/>:<AiFillPlayCircle size={40} className={song?'button':'disable'}/>}</div>
                   <FaForward className={song?'button':'disable'} onClick={forwardTen}/>
                   <BiSkipNext size={30} className={song?song.length>1?'button':'disable':'disable'} onClick={handlePrevSong}/>
-                  <BsShuffle className={isOnShuffle?"button":"unselectedButto"} onClick={() => setIsOnShuffle(!isOnShuffle)}/>
+                  <BsShuffle className={isOnShuffle?"button":"unselectedButto"}/>
               </div>
           </div>
           <div className='colleft'>
-              <div className='row'>
+              <div className='therows'>
                   <SlScreenDesktop className="button" onClick={() => setIsOpen(!isOpen)}/>
                   {volume>=0.66?<ImVolumeHigh className='button'/>:volume>=0.33?<ImVolumeMedium className='button'/>:volume>=0.01?<ImVolumeLow className='button'/>:<ImVolumeMute className='button'/>}
                   <input type='range' defaultValue={volume*100} ref={volumeBar} onChange={changeVolume}/>

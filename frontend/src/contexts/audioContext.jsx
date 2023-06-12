@@ -1,10 +1,23 @@
+import axios from "axios";
 import { createContext, useReducer } from "react";
 
 export const audioContext = createContext()
 
+const incTrendCount = (songId) => {
+    // Make an API call to increment the trending count
+    axios.patch(`http://127.0.0.1:4000/api/tracks/trend/${songId}`)
+    .then((response) => {
+      console.log(response.data); // "Trending incremented"
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
 export const audioReducer = (state, action) => {
     switch (action.type) {
         case 'SET_AUDIO':
+            incTrendCount(action.payload.trackId)
             return {
                 song: [action.payload]
             }
@@ -25,6 +38,7 @@ export const AudioContextProvider = ({ children }) => {
         album: null,
         album_id: null,
         albumImg: null,
+        trackId: null
     })
 
     return(

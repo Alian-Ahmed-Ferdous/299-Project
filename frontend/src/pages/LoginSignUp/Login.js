@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useLogin } from "../../hooks/useLogin"
 import { useNavigate } from 'react-router-dom';
+import './Login.css';
 
 const Login = () => {
   const [email, setEmail] = useState('')
@@ -17,6 +18,7 @@ const Login = () => {
   }
 
   return (
+    <div className="extend">
     <form className="login" onSubmit={handleSubmit}>
       <h3>Log In</h3>
       
@@ -36,6 +38,7 @@ const Login = () => {
       <button disabled={isLoading}>Log in</button>
       {error && <div className="error">{error}</div>}
     </form>
+    </div>
   )
 }
 

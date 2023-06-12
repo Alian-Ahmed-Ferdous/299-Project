@@ -18,11 +18,8 @@
   color: white;
   position: fixed;
   bottom: 0;
-  left: 3rem; 
-  right: 3rem;  
-  width: calc(100% - 6rem); 
+  width: calc(100%); 
   height: max-content;
-  padding:1rem 5rem 0rem 0rem;
   z-index: 9999;
 }
 
@@ -63,7 +60,7 @@
   justify-content: center;
 }
 
-.row{
+.therows{
   display: flex;
   align-items: center;
   flex-direction: row;

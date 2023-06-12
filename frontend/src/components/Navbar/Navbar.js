@@ -9,12 +9,14 @@ export default function Navbar() {
   const navigate = useNavigate();
 
   const handleLogOut = async () => {
+    console.log("Here")
     logout()
     // navigate to "/"
     navigate('/');
   }
 
   return (
+    <div className="InNav">
     <nav className="nav">
       <div className="navCol">
         <Link to="/" className="navTitle">
@@ -27,5 +29,6 @@ export default function Navbar() {
           </button>
       </div>
     </nav>
+    </div>
   );
 }

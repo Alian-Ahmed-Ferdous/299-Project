@@ -4,22 +4,16 @@ import Audioplayer from './components/Audioplayer/Audioplayer'
 import SideBar from "./components/Sidebar/SideBar";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home/Home";
-import Users from "./pages/Users";
-import Messages from "./pages/Messages";
-import FileManager from "./pages/FileManager";
-import Analytics from "./pages/Analytics";
-import Order from "./pages/Order";
-import Saved from "./pages/Saved";
-import Setting from "./pages/Setting";
 import Navbar from "./components/Navbar/Navbar";
 import Album from "./pages/Album/Album";
-import About from "./pages/About";
 import LandingPage from './pages/LandingPage';
 import Signup from './pages/LoginSignUp/Signup';
 import Login from './pages/LoginSignUp/Login';
 import { useAuthContext } from './hooks/useAuthContext';
 import Page404 from './pages/Page404';
 import Apbar from './components/Audioplayer/ApBar/Apbar';
+import Playlists from './pages/Playlists/Playlists';
+import Playlist from './pages/Playlists/Playlist';
 
 function App() {
   const { user } = useAuthContext()
@@ -46,13 +40,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path='/album/:albumId' element={<Album />} />
-          <Route path="/users" element={<Users />} />
-          <Route path="/messages" element={<Messages />} />
-          <Route path="/analytics" element={<Analytics />} />
-          <Route path="/file-manager" element={<FileManager />} />
-          <Route path="/order" element={<Order />} />
-          <Route path="/saved" element={<Saved />} />
-          <Route path="/settings" element={<Setting />} />
+          <Route path='/playlists' element={<Playlists />} />
+          <Route path='/playlist/:playlistId' element={<Playlist />} />
           <Route path='*' element={<Page404 />} />
         </Routes>
       </SideBar>

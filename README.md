@@ -19,3 +19,5 @@ File Structure:
   - Jupyter Notebook: Includes the notebook file where the dataset was trained using machine learning techniques.
   - PKL File: Represents the serialized machine learning model that is connected to the backend via the Flask server.
   - similarity.pkl was not add as it was to big.
+
+- Final presentation  slide is also added.
